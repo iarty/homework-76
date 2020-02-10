@@ -1,0 +1,31 @@
+.Input {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+.Input label {
+  margin-bottom: 3px;
+  padding: 0;
+  display: block;
+  font-weight: bold;
+  width: 100%;
+}
+
+.Input input {
+  display: block;
+  box-sizing: border-box;
+  border: 1px solid #bebebe;
+  padding: 7px;
+  border-radius: 3px;
+  margin: 0 0 5px;
+  outline: none;
+  transition: all 300ms ease-in-out;
+}
+
+.InputWidth {
+  width: 100%;
+  font-size: 12px;
+  background-color: #fff;
+  height: 50px;
+  margin: auto;
+}

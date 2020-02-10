@@ -1,0 +1,13 @@
+.SendMessageBox {
+  padding: 20px;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sendMsg{
+  display: flex;
+}

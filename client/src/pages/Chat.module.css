@@ -1,0 +1,20 @@
+.Container {
+    max-width: 1140px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.ChatWrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 2px solid #eee;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+}
+
+.Headline {
+    text-align: center;
+    text-transform: uppercase;
+}
