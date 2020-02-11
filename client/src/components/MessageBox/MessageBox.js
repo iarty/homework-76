@@ -7,30 +7,26 @@ import { getMessages } from "../../store/actions/actions";
 
 const MessageBox = () => {
   const dispatch = useDispatch();
-  const { messages, loading, lastMessageDate } = useSelector(state => state);
+  const { messages, lastMessageDate } = useSelector(state => state);
 
   useEffect(() => {
-    dispatch(getMessages("/messages"));
+    dispatch(getMessages());
   }, [dispatch]);
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
       if (lastMessageDate) {
-        dispatch(getMessages(`/messages?datetime=${lastMessageDate}`));
+        dispatch(getMessages(lastMessageDate));
       }
     }, 2000);
     return () => {
       clearInterval(intervalId);
     };
   }, [lastMessageDate, dispatch]);
-
   return (
     <div className={classes.MessageBox}>
       <ScrollableFeed>
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          !!messages.length &&
+        {!!messages.length &&
           messages.map(message => (
             <MessageBoxItem
               key={message._id}
@@ -38,8 +34,7 @@ const MessageBox = () => {
               author={message.author}
               message={message.message}
             />
-          ))
-        )}
+          ))}
       </ScrollableFeed>
     </div>
   );

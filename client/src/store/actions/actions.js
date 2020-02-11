@@ -1,30 +1,29 @@
-import {
-  FETCH_MESSAGES_SUCCESS,
-  POST_MESSAGE_SUCCESS,
-  SET_ERROR
-} from "./actionsType";
+import { CLEAR_ERROR, FETCH_MESSAGES_SUCCESS, SET_ERROR } from "./actionsType";
 import axiosChat from "../../axiosChat";
 
 export const postMsg = data => {
   return async dispatch => {
+    dispatch({ type: CLEAR_ERROR });
     try {
       await axiosChat.post("/messages", data);
-      dispatch({ type: POST_MESSAGE_SUCCESS });
     } catch (error) {
-      dispatch({ type: SET_ERROR, payload: error });
+      const payload = error.response.data;
+      dispatch({ type: SET_ERROR, payload });
     }
   };
 };
 
-export const getMessages = url => {
+export const getMessages = datetime => {
+  const url = datetime ? `/messages?datetime=${datetime}` : "/messages";
   return async dispatch => {
     try {
       const response = await axiosChat.get(url);
-      if (response.data) {
+      if (response.data.length) {
         dispatch({ type: FETCH_MESSAGES_SUCCESS, payload: response.data });
       }
     } catch (error) {
-      dispatch({ type: SET_ERROR, payload: error });
+      const payload = error.response.data;
+      dispatch({ type: SET_ERROR, payload });
     }
   };
 };

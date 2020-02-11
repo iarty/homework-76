@@ -15,7 +15,6 @@ export default function Input({ label, onChange, value, placeholder, name }) {
         onChange={onChange}
         value={value}
         placeholder={placeholder}
-        required
       />
     </div>
   );

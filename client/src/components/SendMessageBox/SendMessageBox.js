@@ -6,16 +6,15 @@ import { useDispatch } from "react-redux";
 import { postMsg } from "../../store/actions/actions";
 
 const SendMessageBox = () => {
+  const dispatch = useDispatch();
   const [messageData, setMessageData] = useState({
     author: "",
-    message: "",
-    datetime: new Date().toISOString()
+    message: ""
   });
-  const dispatch = useDispatch();
 
   const sendMsg = async event => {
     event.preventDefault();
-    await dispatch(postMsg(messageData));
+    dispatch(postMsg(messageData));
     setMessageData({
       author: "",
       message: ""

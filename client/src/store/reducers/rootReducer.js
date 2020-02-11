@@ -1,32 +1,28 @@
 import {
+  CLEAR_ERROR,
   FETCH_MESSAGES_SUCCESS,
-  POST_MESSAGE_SUCCESS,
-  SET_ERROR,
+  SET_ERROR
 } from "../actions/actionsType";
 
 const initialState = {
   messages: [],
   lastMessageDatetime: {},
-  error: null,
-  loading: false
+  error: null
 };
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_ERROR:
+      return { ...state, error: null };
     case SET_ERROR:
-      return { ...state, error: action.error };
+      return { ...state, error: action.payload };
     case FETCH_MESSAGES_SUCCESS:
-      const lastMessageDate =
-        action.payload[action.payload.length - 1].datetime;
       return {
         ...state,
         error: null,
         messages: [...state.messages, ...action.payload],
-        lastMessageDate,
-        loading: false
+        lastMessageDate: action.payload[action.payload.length - 1].datetime
       };
-    case POST_MESSAGE_SUCCESS:
-      return { ...state, loading: false };
     default:
       return state;
   }
